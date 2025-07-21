@@ -1804,6 +1804,77 @@ input:checked + .slider:before {
 .slide-in {
     animation: slideIn 0.5s ease forwards;
 }
+/* Transfer Section */
+.transfer-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.transfer-success {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    display: none;
+}
+
+.address-book {
+    margin-top: 2rem;
+}
+
+.address-book h3 {
+    margin-bottom: 1rem;
+}
+
+.address-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.address-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.address-info {
+    flex: 1;
+}
+
+.address-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.address-actions button {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+}
+
+.address-actions button:hover {
+    color: #00d4ff;
+}
+
+.empty-address-book {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Light mode adjustments */
+body.light-mode .address-item {
+    background: #f9fafb;
+}
+
+body.light-mode .address-item:hover {
+    background: #f3f4f6;
+}
 
 /* Dark/Light Mode Specific Styles */
 body.light-mode .card {
