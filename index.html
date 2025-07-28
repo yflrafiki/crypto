@@ -365,7 +365,7 @@
                             <h2 class="card-title">Portfolio Performance</h2>
                             <div class="portfolio-value">$<span id="portfolioValue">10000.00</span></div>
                             <div class="portfolio-change">
-                                <span id="portfolioChange" class="positive">+$0.00 (0.00%)</span>
+                                <span id="portfolioChange" class="positive">+$0.00 (50.00%)</span>
                                 <span>Last 24h</span>
                             </div>
                             <div class="chart-container">
@@ -382,11 +382,11 @@
                                 </div>
                                 <div class="stat-item">
                                     <div class="stat-label">Total Invested</div>
-                                    <div class="stat-value">$<span id="totalInvested">0.00</span></div>
+                                    <div class="stat-value">$<span id="totalInvested">500.00</span></div>
                                 </div>
                                 <div class="stat-item">
                                     <div class="stat-label">24h Change</div>
-                                    <div class="stat-value"><span id="dayChange" class="positive">+0.00%</span></div>
+                                    <div class="stat-value"><span id="dayChange" class="positive">+50.00%</span></div>
                                 </div>
                                 <div class="stat-item">
                                     <div class="stat-label">Holdings</div>
@@ -599,11 +599,11 @@
                         <h2 class="card-title">Buy Cryptocurrency</h2>
                         <div class="buy-grid">
                             <div class="buy-options">
-                                <div class="buy-option active" data-symbol="BTC">
+                                <div class="buy-option active" data-symbol="BTC" onclick="selectCrypto('buy', 'BTC')">
                                     <i class="fab fa-bitcoin"></i>
                                     <span>Bitcoin</span>
                                 </div>
-                                <div class="buy-option" data-symbol="ETH">
+                                <div class="buy-option" data-symbol="ETH" onclick="selectCrypto('buy', 'ETH')">
                                     <i class="fab fa-ethereum"></i>
                                     <span>Ethereum</span>
                                 </div>
@@ -611,7 +611,7 @@
                                     <i class="fas fa-dollar-sign"></i>
                                     <span>Tether</span>
                                 </div>
-                                <div class="buy-option" data-symbol="SOL">
+                                <div class="buy-option" data-symbol="SOL" onclick="selectCrypto('buy', 'SOL')">
                                     <i class="fas fa-circle"></i>
                                     <span>Solana</span>
                                 </div>
@@ -659,7 +659,7 @@
                                         <span id="buyTotalAmount">$0.00</span>
                                     </div>
                                 </div>
-                                <button class="btn btn-buy">Buy Now</button>
+                                <button class="btn btn-buy" onclick="executeBuy()">Buy Now</button>
                             </div>
                         </div>
                     </div>
@@ -692,17 +692,17 @@
                         <h2 class="card-title">Sell Cryptocurrency</h2>
                         <div class="sell-grid">
                             <div class="sell-options">
-                                <div class="sell-option active" data-symbol="BTC">
+                                <div class="sell-option active" data-symbol="BTC" onclick="selectCrypto('sell', 'BTC')">
                                     <i class="fab fa-bitcoin"></i>
                                     <span>Bitcoin</span>
                                     <span class="option-balance">0.00000000 BTC</span>
                                 </div>
-                                <div class="sell-option" data-symbol="ETH">
+                                <div class="sell-option" data-symbol="ETH" onclick="selectCrypto('sell', 'ETH')">
                                     <i class="fab fa-ethereum"></i>
                                     <span>Ethereum</span>
                                     <span class="option-balance">0.00000000 ETH</span>
                                 </div>
-                                <div class="sell-option" data-symbol="SOL">
+                                <div class="sell-option" data-symbol="SOL" onclick="selectCrypto('sell', 'SOL')">
                                     <i class="fas fa-circle"></i>
                                     <span>Solana</span>
                                     <span class="option-balance">0.00000000 SOL</span>
@@ -712,8 +712,8 @@
                                 <div class="form-group">
                                     <label>Sell Amount</label>
                                     <div class="amount-toggle">
-                                        <button class="toggle-btn active">USD</button>
-                                        <button class="toggle-btn">Crypto</button>
+                                        <button class="toggle-btn active" onclick="setSellAmountType('usd')">USD</button>
+                                        <button class="toggle-btn" onclick="setSellAmountType('crypto')">Crypto</button>
                                     </div>
                                     <div class="amount-input">
                                         <input type="number" id="sellAmount" placeholder="0.00" step="0.01" min="0">
@@ -751,7 +751,7 @@
                                         <span id="sellNetAmount">$0.00</span>
                                     </div>
                                 </div>
-                                <button class="btn btn-sell">Sell Now</button>
+                                <button class="btn btn-sell" onclick="executeSell()">Sell Now</button>
                             </div>
                         </div>
                     </div>
