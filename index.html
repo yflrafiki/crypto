@@ -1247,7 +1247,7 @@
         // Application State
         let currentUser = null;
         let userPortfolio = {
-            balance: 10000.00,
+            balance: 5000.00,
             holdings: {},
             totalInvested: 0,
             transactions: []
@@ -1832,19 +1832,34 @@ function initializeApp() {
             }
         }
 
-        function register() {
-            const name = document.getElementById('regName').value;
-            const email = document.getElementById('regEmail').value;
-            const password = document.getElementById('regPassword').value;
+        // In the register function:
+function register() {
+    const name = document.getElementById('regName').value;
+    const email = document.getElementById('regEmail').value;
+    const password = document.getElementById('regPassword').value;
 
-            // Simulate registration
-            currentUser = { 
-                name, 
-                email,
-                avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random`
-            };
-            showMainApp();
+    // Create user object with generated avatar
+    currentUser = { 
+        name, 
+        email,
+        password, // In a real app, this should be hashed
+        avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(name.replace(/\s+/g, '+'))}&background=random&color=fff`,
+        portfolio: {
+            balance: 5000.00,
+            holdings: {},
+            totalInvested: 0,
+            transactions: []
         }
+    };
+    
+    // Save user to localStorage
+    localStorage.setItem('cryptoEdgeUsers', JSON.stringify({
+        ...JSON.parse(localStorage.getItem('cryptoEdgeUsers') || '{}'),
+        [email]: currentUser
+    }));
+    
+    showMainApp();
+}
 
         function checkSavedSession() {
     const savedUser = localStorage.getItem('cryptoVaultUser');
@@ -1853,6 +1868,12 @@ function initializeApp() {
     if (savedUser) {
         try {
             currentUser = JSON.parse(savedUser);
+            userPortfolio = currentUser.portfolio || {
+                balance: 5000.00,
+                holdings: {},
+                totalInvested: 0,
+                transactions: []
+            };
             showMainApp();
             
             if (savedSection) {
@@ -1870,23 +1891,33 @@ function initializeApp() {
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
 
-            // Simulate login
-            currentUser = { 
-                name: 'Demo User', 
-                email,
-                avatar: 'https://randomuser.me/api/portraits/men/1.jpg'
-            };
+            const users = JSON.parse(localStorage.getItem('cryptoEdgeUsers') || '{}');
+            const user = users[email];
+            if (user && user.password === password) {
+                currentUser = user;
+                userPortfolio = user.portfolio || {
+                    balance: 5000.00,
+                    holdings: {},
+                    totalInvested: 0,
+                    transactions: []
+                };
                // Save user session
-    localStorage.setItem('cryptoVaultUser', JSON.stringify({
-        name: currentUser.name,
-        email: currentUser.email,
-        avatar: currentUser.avatar
-    }));
+    localStorage.setItem('cryptoVaultUser', JSON.stringify(currentUser));
             showMainApp();
+        } else {
+            alert('Invalid email or password. Please try again.');
+
+         }
         }
 
         function logout() {
            currentUser = null;
+           userPortfolio = {
+            balance: 5000.00,
+            holdings: {},
+            totalInvested: 0,
+            transactions: []
+           };
     localStorage.removeItem('cryptoVaultUser');
     localStorage.removeItem('lastActiveSection');
     document.getElementById('landingPage').style.display = 'block';
@@ -2590,12 +2621,12 @@ function executeTransfer() {
             initApp();
             
             // Demo mode - auto login for demonstration
-            setTimeout(() => {
-                if (!currentUser) {
-                    document.getElementById('loginEmail').value = 'demo@cryptovault.com';
-                    document.getElementById('loginPassword').value = 'demo123';
-                }
-            }, 1000);
+            // setTimeout(() => {
+            //     if (!currentUser) {
+            //         document.getElementById('loginEmail').value = 'demo@cryptovault.com';
+            //         document.getElementById('loginPassword').value = 'demo123';
+            //     }
+            // }, 1000);
         });
     </script>
 </body>
