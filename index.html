@@ -1247,7 +1247,7 @@
         // Application State
         let currentUser = null;
         let userPortfolio = {
-            balance: 5000.00,
+            balance: 500.00,
             holdings: {},
             totalInvested: 0,
             transactions: []
@@ -1845,7 +1845,7 @@ function register() {
         password, // In a real app, this should be hashed
         avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(name.replace(/\s+/g, '+'))}&background=random&color=fff`,
         portfolio: {
-            balance: 5000.00,
+            balance: 500.00,
             holdings: {},
             totalInvested: 0,
             transactions: []
@@ -1869,7 +1869,7 @@ function register() {
         try {
             currentUser = JSON.parse(savedUser);
             userPortfolio = currentUser.portfolio || {
-                balance: 5000.00,
+                balance: 500.00,
                 holdings: {},
                 totalInvested: 0,
                 transactions: []
@@ -1896,7 +1896,7 @@ function register() {
             if (user && user.password === password) {
                 currentUser = user;
                 userPortfolio = user.portfolio || {
-                    balance: 5000.00,
+                    balance: 500.00,
                     holdings: {},
                     totalInvested: 0,
                     transactions: []
@@ -1913,7 +1913,7 @@ function register() {
         function logout() {
            currentUser = null;
            userPortfolio = {
-            balance: 5000.00,
+            balance: 500.00,
             holdings: {},
             totalInvested: 0,
             transactions: []
@@ -2627,7 +2627,7 @@ function executeTransfer() {
                     avgPrice: 133.33
                 }
             };
-            userPortfolio.balance = 5000;
+            userPortfolio.balance = 500;
             userPortfolio.totalInvested = 13000;
             updatePortfolioDisplay();
         }
